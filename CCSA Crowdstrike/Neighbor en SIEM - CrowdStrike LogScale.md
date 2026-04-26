@@ -109,6 +109,91 @@ head()
 
 Esto sirve para comparar sesiones del mismo usuario y encontrar solapamientos o actividad rara.
 
+## Ejemplo explicado 5: impossible travel
+
+Escenario:
+
+> Quieres detectar si un usuario inicio sesion desde dos paises distintos en poco tiempo. Para eso necesitas comparar cada login exitoso contra el login exitoso anterior del mismo usuario.
+
+Query conceptual:
+
+```logscale
+#event.category="authentication"
+#event.outcome="success"
+| ipLocation(source.ip)
+| sort([user.name, @timestamp], order=[asc, asc])
+| neighbor(include=[user.name, source.ip, source.ip.country, source.ip.lat, source.ip.lon, @timestamp], prefix="prev")
+| user.name = prev.user.name
+| source.ip.country != prev.source.ip.country
+```
+
+### Paso por paso
+
+1. Filtras autenticaciones exitosas.
+2. `ipLocation(source.ip)` agrega geolocalizacion de la IP.
+3. `sort([user.name, @timestamp])` establece un orden por usuario y tiempo.
+4. `neighbor(..., prefix="prev")` copia campos del evento anterior.
+5. `user.name = prev.user.name` evita comparar usuarios distintos.
+6. `source.ip.country != prev.source.ip.country` deja eventos donde cambio el pais.
+
+### Por que el orden importa
+
+`neighbor()` no sabe que significa "anterior" si antes no ordenas o agregas los eventos. Por eso una query que haga esto esta incompleta:
+
+```logscale
+#event.category="authentication"
+#event.outcome="success"
+| ipLocation(source.ip)
+| neighbor(include=[source.ip, @timestamp], prefix="prev")
+```
+
+El problema es que intenta usar `neighbor()` sin establecer un orden claro.
+
+> [!important] Clave de examen
+> Si ves `neighbor()` justo despues de filtros simples, sospecha. La funcion necesita una secuencia ordenada por `head()`, `sort()`, `bucket()`, `groupBy()` o algo equivalente.
+
+## Ejemplo explicado 6: que paso antes y despues de LSASS
+
+Escenario:
+
+> Una deteccion indica acceso sospechoso a LSASS en `DESKTOP-8472` a las 14:23 UTC. Quieres ver procesos, conexiones y archivos alrededor del evento.
+
+Opcion de investigacion en consola:
+
+- usar **Show in Context** desde el evento para ver eventos cercanos en una ventana temporal
+
+Opcion conceptual en CQL:
+
+```logscale
+host.name="DESKTOP-8472"
+| sort(@timestamp, order=asc)
+| neighbor(include=[@timestamp, event_simpleName, process.name, process.command_line], prefix="prev")
+| neighbor(include=[@timestamp, event_simpleName, process.name, process.command_line], prefix="next", direction=succeeding)
+```
+
+### Que te da
+
+Para cada evento, ves:
+
+- campos del evento anterior como `prev.process.name`
+- campos del evento siguiente como `next.process.name`
+- contexto temporal inmediato
+
+Esto sirve para distinguir:
+
+- herramienta administrativa legitima
+- secuencia sospechosa con acceso a credenciales
+- actividad posterior como red, escritura de archivo o ejecucion adicional
+
+## Diferencia entre `neighbor()` y Show in Context
+
+| Concepto | Uso |
+|---|---|
+| `neighbor()` | funcion CQL para comparar evento actual contra anterior/siguiente |
+| Show in Context | accion de investigacion en UI para ver eventos alrededor de uno seleccionado |
+
+Ambos ayudan con contexto temporal, pero no son lo mismo.
+
 ## Algo que suelen preguntar
 
 > [!question] Por que a veces va despues de `head()` o `sort()`?
@@ -121,6 +206,8 @@ Esto sirve para comparar sesiones del mismo usuario y encontrar solapamientos o 
 - creer que funciona bien sin ordenar primero los eventos
 - confundir "vecino" con IP vecina o dispositivo de red
 - olvidar que puede mirar hacia atras o hacia adelante
+- comparar usuarios distintos por no filtrar o validar la misma entidad
+- usarlo para patrones multi-evento complejos donde conviene mas `correlate()`
 
 ## Respuesta corta tipo examen
 
@@ -135,6 +222,7 @@ Esto sirve para comparar sesiones del mismo usuario y encontrar solapamientos o 
 
 - [[correlate() en SIEM - CrowdStrike LogScale]]
 - [[groupBy() en SIEM - CrowdStrike LogScale]]
+- [[defineTable() y match() en SIEM - CrowdStrike LogScale]]
 - [[Mapa CCSA CrowdStrike]]
 
 ## Fuentes

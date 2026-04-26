@@ -61,6 +61,48 @@ Una estructura simple y util:
 - que tan prioritario es
 - que accion se recomienda
 
+## Plantilla de resumen de caso
+
+Puedes usar esta estructura mental:
+
+```text
+Resumen:
+Evidencia principal:
+Timeline:
+Usuarios afectados:
+Hosts afectados:
+IOCs:
+Impacto:
+Acciones tomadas:
+Recomendacion:
+Estado:
+```
+
+## Resumen ejecutivo vs resumen tecnico
+
+| Audiencia | Enfoque |
+|---|---|
+| Liderazgo | impacto, riesgo, alcance, decision necesaria |
+| Analista SOC | evidencia, queries, pivots, timeline, IOCs |
+| Equipo de IT | sistemas afectados, acciones concretas, prioridad |
+| Compliance/legal | datos impactados, tiempos, trazabilidad, decisiones |
+
+> [!tip] Idea de examen
+> Comunicar bien no es contar todos los logs. Es convertir evidencia tecnica en una decision clara.
+
+## Visualizaciones utiles
+
+Para reportar, suelen servir:
+
+- conteos por usuario
+- conteos por host
+- eventos por tiempo
+- top IPs origen/destino
+- volumen por tipo de evento
+- comparacion antes/despues de una accion
+
+Estas visualizaciones no prueban solas una conclusion, pero ayudan a explicar tendencia, alcance y anomalia.
+
 ## Mini resumen tipo examen
 
 > [!success] Respuesta rapida
@@ -73,6 +115,9 @@ Una estructura simple y util:
 3. Que elementos no deberian faltar en un resumen ejecutivo de incidente?
 4. Cual es la diferencia entre investigar bien y comunicar bien?
 5. Por que una visualizacion puede ayudar a detectar tendencias o anomalias mas rapido?
+6. Que deberia incluir un timeline de investigacion?
+7. Que diferencia hay entre un reporte para liderazgo y uno para analistas?
+8. Por que conviene documentar decisiones tomadas?
 
 ## Respuestas rapidas
 
@@ -81,9 +126,14 @@ Una estructura simple y util:
 3. Hallazgo, evidencia, alcance, prioridad e indicacion de respuesta o remediacion.
 4. Investigar bien encuentra la verdad tecnica; comunicar bien hace esa verdad util para decidir.
 5. Porque resume grandes cantidades de datos en una forma facil de interpretar.
+6. Eventos clave en orden, hora, fuente, observable y significado analitico.
+7. Liderazgo necesita impacto y decision; analistas necesitan evidencia tecnica reproducible.
+8. Porque deja trazabilidad, facilita handoff y explica por que se escalo, cerro o remedio un caso.
 
 ## Relacionadas
 
+- [[Falcon Next-Gen SIEM - Workbench Case Management y Fusion SOAR]]
+- [[Preguntas tipo escenario - CCSA CrowdStrike]]
 - [[CCSA - Incident Investigation]]
 - [[CCSA - Querying and Analytics]]
 - [[CCSA - Temario oficial y plan de estudio]]
@@ -91,6 +141,6 @@ Una estructura simple y util:
 
 ## Fuentes
 
-- CCSA Exam Guide: https://www.crowdstrike.com/crowdstrike-university-ccsa-certification-exam-guide.pdf
+- CCSA Exam Guide: https://assets.crowdstrike.com/is/content/crowdstrikeinc/crowdstrike-university-ccsa-certification-exam-guidepdf
 - Training Catalog - SIEM 106 / SIEM 109: https://www.crowdstrike.com/content/dam/crowdstrike/marketing/en-us/documents/pdfs/crowdstrike-university/CSU-Training-Catalog.pdf
 - Incident Management overview: https://www.crowdstrike.com/en-us/platform/next-gen-siem/incident-management/

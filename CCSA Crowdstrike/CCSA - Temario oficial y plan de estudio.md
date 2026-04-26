@@ -28,6 +28,16 @@ tags:
 3. [[CCSA - Incident Investigation]]
 4. [[CCSA - Reporting and Communication]]
 
+## Notas complementarias importantes
+
+- [[Chuleta CQL para CCSA - CrowdStrike LogScale]]
+- [[defineTable() y match() en SIEM - CrowdStrike LogScale]]
+- [[CPS - CrowdStrike Parsing Standard para CCSA]]
+- [[Tipos de deteccion y metadata de alertas - CCSA]]
+- [[MITRE ATT&CK para CCSA]]
+- [[Falcon Next-Gen SIEM - Workbench Case Management y Fusion SOAR]]
+- [[Preguntas tipo escenario - CCSA CrowdStrike]]
+
 ## Lo que CrowdStrike espera que sepas hacer
 
 - construir busquedas en **CQL**
@@ -57,6 +67,9 @@ tags:
 ### Semana 1
 
 - [[CCSA - Querying and Analytics]]
+- [[Chuleta CQL para CCSA - CrowdStrike LogScale]]
+- [[defineTable() y match() en SIEM - CrowdStrike LogScale]]
+- [[CPS - CrowdStrike Parsing Standard para CCSA]]
 - [[Neighbor en SIEM - CrowdStrike LogScale]]
 - [[correlate() en SIEM - CrowdStrike LogScale]]
 - [[groupBy() en SIEM - CrowdStrike LogScale]]
@@ -64,16 +77,20 @@ tags:
 ### Semana 2
 
 - [[CCSA - Detection Logic and Alert Analysis]]
+- [[Tipos de deteccion y metadata de alertas - CCSA]]
+- [[MITRE ATT&CK para CCSA]]
 - repasar MITRE ATT&CK, severidad, tacticas y confidence
 
 ### Semana 3
 
 - [[CCSA - Incident Investigation]]
+- [[Falcon Next-Gen SIEM - Workbench Case Management y Fusion SOAR]]
 - practicar pivots entre IP, usuario, host y proceso
 
 ### Semana 4
 
 - [[CCSA - Reporting and Communication]]
+- [[Preguntas tipo escenario - CCSA CrowdStrike]]
 - responder preguntas de autoevaluacion de todas las notas
 
 ## Ideas clave para memorizar
@@ -82,6 +99,22 @@ tags:
 - `Detection Logic` = entender por que algo alerto
 - `Investigation` = reconstruir la historia del incidente
 - `Reporting` = resumir y comunicar con claridad
+- `CPS` = consultar campos normalizados entre fuentes
+- `MITRE` = clasificar comportamiento por tactica y tecnica
+- `Fusion SOAR` = automatizar respuesta aprobada
+- `Workbench` = revisar e investigar actividad relevante
+- `Case Management` = documentar y coordinar el caso
+
+## Como estudiar para preguntas de escenario
+
+Cuando leas una pregunta larga, separala asi:
+
+1. Cual es el observable principal?
+2. Que tipo de deteccion es?
+3. Que metadata importa?
+4. Que pivot haria despues?
+5. Que evidencia confirmaria o descartaria?
+6. Que respuesta o comunicacion corresponde?
 
 ## Relacionadas
 
@@ -90,9 +123,10 @@ tags:
 - [[CCSA - Detection Logic and Alert Analysis]]
 - [[CCSA - Incident Investigation]]
 - [[CCSA - Reporting and Communication]]
+- [[Preguntas tipo escenario - CCSA CrowdStrike]]
 
 ## Fuentes
 
-- CCSA Exam Guide: https://www.crowdstrike.com/crowdstrike-university-ccsa-certification-exam-guide.pdf
+- CCSA Exam Guide: https://assets.crowdstrike.com/is/content/crowdstrikeinc/crowdstrike-university-ccsa-certification-exam-guidepdf
 - Certification Guide: https://www.crowdstrike.com/wp-content/uploads/2020/11/cfcp-certification-guide.pdf
 - Training Catalog: https://www.crowdstrike.com/content/dam/crowdstrike/marketing/en-us/documents/pdfs/crowdstrike-university/CSU-Training-Catalog.pdf
