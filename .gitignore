@@ -1,0 +1,19 @@
+# Obsidian local workspace state
+.obsidian/workspace.json
+
+# Obsidian caches and transient data
+.obsidian/cache/
+.obsidian/workspace-mobile.json
+.obsidian/plugins/*/data.json
+
+# Operating system noise
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor and temp files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~

@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CCSA Crowdstrike/CCSA - Querying and Analytics.md",
+                "file": "CCSA Crowdstrike/Neighbor en SIEM - CrowdStrike LogScale.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "CCSA - Querying and Analytics"
+              "title": "Neighbor en SIEM - CrowdStrike LogScale"
             }
           }
         ]
@@ -185,25 +185,25 @@
   },
   "active": "b0477f3589aeb2c3",
   "lastOpenFiles": [
-    "CCSA Crowdstrike/CCSA - Incident Investigation.md",
-    "CCSA Crowdstrike/CCSA - Detection Logic and Alert Analysis.md",
-    "CCSA Crowdstrike/Tipos de deteccion y metadata de alertas - CCSA.md",
-    "CCSA Crowdstrike/defineTable() y match() en SIEM - CrowdStrike LogScale.md",
-    "CCSA Crowdstrike/Preguntas tipo escenario - CCSA CrowdStrike.md",
-    "CCSA Crowdstrike/Neighbor en SIEM - CrowdStrike LogScale.md",
     "CCSA Crowdstrike/MITRE ATT&CK para CCSA.md",
     "CCSA Crowdstrike/Mapa CCSA CrowdStrike.md",
     "CCSA Crowdstrike/groupBy() en SIEM - CrowdStrike LogScale.md",
     "CCSA Crowdstrike/Falcon Next-Gen SIEM - Workbench Case Management y Fusion SOAR.md",
-    "CCSA Crowdstrike/CPS - CrowdStrike Parsing Standard para CCSA.md",
-    "CCSA Crowdstrike/correlate() en SIEM - CrowdStrike LogScale.md",
-    "CCSA Crowdstrike/Chuleta CQL para CCSA - CrowdStrike LogScale.md",
+    "CCSA Crowdstrike/defineTable() y match() en SIEM - CrowdStrike LogScale.md",
     "CCSA Crowdstrike/CCSA - Temario oficial y plan de estudio.md",
     "CCSA Crowdstrike/CCSA - Reporting and Communication.md",
     "CCSA Crowdstrike/CCSA - Querying and Analytics.md",
+    "CCSA Crowdstrike/CCSA - Incident Investigation.md",
+    "CCSA Crowdstrike/CCSA - Detection Logic and Alert Analysis.md",
+    "CCSA Crowdstrike/Tipos de deteccion y metadata de alertas - CCSA.md",
+    "CCSA Crowdstrike/Preguntas tipo escenario - CCSA CrowdStrike.md",
+    "CCSA Crowdstrike/Chuleta CQL para CCSA - CrowdStrike LogScale.md",
+    "CCSA Crowdstrike/CPS - CrowdStrike Parsing Standard para CCSA.md",
+    "CCSA Crowdstrike/correlate() en SIEM - CrowdStrike LogScale.md",
     "CCSA Crowdstrike/Correlation en SIEM - CrowdStrike LogScale.md",
     "Welcome.md",
     "create a link.md",
+    "CCSA Crowdstrike/Neighbor en SIEM - CrowdStrike LogScale.md",
     "CCSA Crowdstrike"
   ]
 }
