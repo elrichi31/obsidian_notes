@@ -74,6 +74,25 @@ Respuesta:
 - sin orden claro, "evento anterior" no tiene significado confiable
 - primero debes establecer orden temporal y, si aplica, validar que sea el mismo usuario/host
 
+### 3.3 proceso unido con listener de red
+
+Tienes `ProcessRollup2` y `NetworkListenIP4`. Necesitas saber que proceso abrio un puerto privilegiado.
+
+Respuesta:
+
+- usar `join()` porque hay dos busquedas con una llave comun
+- query principal: `ProcessRollup2`
+- subquery: `NetworkListenIP4 LocalPort<1024 LocalPort!=0`
+- `field=TargetProcessId`
+- `key=ContextProcessId`
+- `include=[LocalAddressIP4, LocalPort]`
+
+Clave mental:
+
+```text
+proceso -> TargetProcessId == ContextProcessId -> listener/puerto
+```
+
 ## Detection Logic and Alert Analysis
 
 ### 4. Alerta de origen externo
@@ -121,6 +140,31 @@ Respuesta:
 - uso de credenciales privilegiadas
 - ejecucion remota
 - multiples hosts afectados
+
+### 7.1 WMI remoto, servicio auto-start y C2
+
+Ves esta cadena:
+
+- autenticacion SMB desde una workstation no autorizada hacia un servidor
+- `wmiprvse.exe` ejecuta `sc.exe create`
+- servicio nuevo con `start=auto`
+- binario en `C:\Windows\Temp`
+- conexion outbound 443 hacia IP externa
+
+Que tecnicas/tacticas aparecen?
+
+Respuesta:
+
+- **Lateral Movement** por uso remoto de credenciales/WMI/servicio hacia otro host
+- **Persistence** porque el servicio queda configurado para auto-start
+- **Command and Control** por conexion saliente del binario sospechoso
+
+Clave:
+
+```text
+No contestes solo "privilege escalation" porque el servicio corre como LocalSystem.
+La historia principal es movimiento remoto + persistencia + C2.
+```
 
 ### 8. Posible persistence
 
@@ -171,6 +215,59 @@ Respuesta:
 - tareas pendientes
 - owner y estado
 
+## Correlation Rules y Tuning
+
+### 12. Baseline, exclusion y threshold
+
+Una correlation rule usa:
+
+```logscale
+defineTable(... name="baseline")
+| main query
+| UserName =~ NOT in(values=["scanner_svc"])
+| ClientComputerName =~ NOT in(values=["scanner-host-02"])
+| NOT match(file="baseline", field=[TargetFileName, UserName, UserSid])
+| groupBy([UserName, ClientComputerName], function=count(TargetFileName, distinct=true, as=_distinct_files))
+| _distinct_files >= 3
+```
+
+Tres entradas no aparecen:
+
+- `security_audit_svc` desde `scanner-host-02`, 6 archivos
+- `backup_service` desde `backup-server-01`, 2 archivos
+- `it_admin_svc` desde `admin-workstation-05`, 4 archivos
+
+Por que no aparecen?
+
+Respuesta:
+
+- `security_audit_svc` fue excluido por `ClientComputerName`
+- `backup_service` no cumplio el threshold `>= 3`
+- `it_admin_svc` probablemente matcheo baseline; hay que confirmarlo revisando la tabla historica
+
+Clave:
+
+```text
+Lee la rule en orden: baseline -> main query -> exclusions -> NOT match -> groupBy -> threshold.
+```
+
+### 13. IOC lookup sin perder eventos
+
+Quieres revisar `source.ip` y `destination.ip` contra IOCs de alta confianza, pero no quieres eliminar eventos sin match.
+
+Respuesta:
+
+```logscale
+| ioc:lookup(field=[source.ip, destination.ip], type="ip_address", confidenceThreshold="high", strict=false)
+```
+
+Clave:
+
+```text
+strict=false = enriquecer sin filtrar todo.
+strict=true = solo pasan eventos con match.
+```
+
 ## Preguntas rapidas de memoria
 
 1. `groupBy()` sirve para?
@@ -182,6 +279,9 @@ Respuesta:
 7. Fusion SOAR sirve para?
 8. `defineTable()` sirve para?
 9. `match()` sirve para?
+10. `join()` sirve para?
+11. `strict=false` en `ioc:lookup()` sirve para?
+12. En una rule compleja, que revisas primero: threshold o exclusions?
 
 ## Respuestas rapidas de memoria
 
@@ -194,6 +294,9 @@ Respuesta:
 7. Automatizar y orquestar acciones de respuesta aprobadas.
 8. Crear una tabla temporal desde una subquery.
 9. Comparar eventos contra una tabla temporal o lookup para filtrar/enriquecer.
+10. Combinar dos busquedas por una llave comun; `field` viene de la query principal y `key` de la subquery.
+11. Enriquecer eventos sin descartar los que no tengan match de IOC.
+12. Exclusions primero, porque el pipeline elimina eventos antes de llegar al threshold.
 
 ## Relacionadas
 
@@ -203,4 +306,7 @@ Respuesta:
 - [[CCSA - Incident Investigation]]
 - [[CCSA - Reporting and Communication]]
 - [[defineTable() y match() en SIEM - CrowdStrike LogScale]]
+- [[join() en SIEM - CrowdStrike LogScale]]
+- [[Lecciones del simulacro CCSA - CrowdStrike]]
+- [[Como leer correlation rules complejas - CCSA CrowdStrike]]
 - [[Mapa CCSA CrowdStrike]]

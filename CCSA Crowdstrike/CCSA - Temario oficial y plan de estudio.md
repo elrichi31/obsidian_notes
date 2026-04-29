@@ -32,11 +32,14 @@ tags:
 
 - [[Chuleta CQL para CCSA - CrowdStrike LogScale]]
 - [[defineTable() y match() en SIEM - CrowdStrike LogScale]]
+- [[join() en SIEM - CrowdStrike LogScale]]
 - [[CPS - CrowdStrike Parsing Standard para CCSA]]
 - [[Tipos de deteccion y metadata de alertas - CCSA]]
 - [[MITRE ATT&CK para CCSA]]
 - [[Falcon Next-Gen SIEM - Workbench Case Management y Fusion SOAR]]
 - [[Preguntas tipo escenario - CCSA CrowdStrike]]
+- [[Lecciones del simulacro CCSA - CrowdStrike]]
+- [[Como leer correlation rules complejas - CCSA CrowdStrike]]
 
 ## Lo que CrowdStrike espera que sepas hacer
 
@@ -69,6 +72,7 @@ tags:
 - [[CCSA - Querying and Analytics]]
 - [[Chuleta CQL para CCSA - CrowdStrike LogScale]]
 - [[defineTable() y match() en SIEM - CrowdStrike LogScale]]
+- [[join() en SIEM - CrowdStrike LogScale]]
 - [[CPS - CrowdStrike Parsing Standard para CCSA]]
 - [[Neighbor en SIEM - CrowdStrike LogScale]]
 - [[correlate() en SIEM - CrowdStrike LogScale]]
@@ -91,6 +95,8 @@ tags:
 
 - [[CCSA - Reporting and Communication]]
 - [[Preguntas tipo escenario - CCSA CrowdStrike]]
+- [[Lecciones del simulacro CCSA - CrowdStrike]]
+- [[Como leer correlation rules complejas - CCSA CrowdStrike]]
 - responder preguntas de autoevaluacion de todas las notas
 
 ## Ideas clave para memorizar
@@ -104,6 +110,35 @@ tags:
 - `Fusion SOAR` = automatizar respuesta aprobada
 - `Workbench` = revisar e investigar actividad relevante
 - `Case Management` = documentar y coordinar el caso
+- `join()` = combinar dos busquedas por una llave comun
+- `mode=inner` = solo coincidencias entre ambos lados
+- `mode=left` = conserva la query principal y agrega contexto si hay match
+- `strict=false` en `ioc:lookup()` = enriquece sin descartar eventos sin match
+- rule compleja = baseline -> filtros -> exclusions -> `NOT match()` -> `groupBy()` -> threshold
+
+## Revision de huecos en las notas
+
+Ya esta bien cubierto:
+
+- dominios oficiales del CCSA
+- CQL basico y mentalidad de tuberia
+- `groupBy()`, `neighbor()`, `correlate()`, `defineTable()` + `match()` y `join()`
+- CPS y campos normalizados
+- tipos de deteccion, metadata de alertas y MITRE ATT&CK
+- Workbench, Case Management y Fusion SOAR
+- preguntas tipo escenario
+- lecciones del simulacro y lectura de correlation rules complejas
+
+Temas que conviene convertir en notas propias despues:
+
+- `timeChart()` y `bucket()` para tendencias y visual summaries
+- `regex()`, `parseJson()`, `parseCsv()` y extraccion de campos
+- `readFile()`, `match()` con lookup files e `ioc:lookup()`
+- `session()`, `series()` y patrones de autenticacion
+- data sources, retencion y problemas de timestamp/ingestion
+- dashboards, prebuilt scripts y como elegir visualizaciones
+- geolocalizacion, reputacion IP, IOCs y contexto de amenaza
+- criterios de respuesta/remediacion segun evidencia
 
 ## Como estudiar para preguntas de escenario
 
@@ -123,7 +158,10 @@ Cuando leas una pregunta larga, separala asi:
 - [[CCSA - Detection Logic and Alert Analysis]]
 - [[CCSA - Incident Investigation]]
 - [[CCSA - Reporting and Communication]]
+- [[join() en SIEM - CrowdStrike LogScale]]
 - [[Preguntas tipo escenario - CCSA CrowdStrike]]
+- [[Lecciones del simulacro CCSA - CrowdStrike]]
+- [[Como leer correlation rules complejas - CCSA CrowdStrike]]
 
 ## Fuentes
 

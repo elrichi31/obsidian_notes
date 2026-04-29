@@ -20,11 +20,14 @@ tags:
 - [[CCSA - Reporting and Communication]]
 - [[Chuleta CQL para CCSA - CrowdStrike LogScale]]
 - [[defineTable() y match() en SIEM - CrowdStrike LogScale]]
+- [[join() en SIEM - CrowdStrike LogScale]]
 - [[CPS - CrowdStrike Parsing Standard para CCSA]]
 - [[MITRE ATT&CK para CCSA]]
 - [[Tipos de deteccion y metadata de alertas - CCSA]]
 - [[Falcon Next-Gen SIEM - Workbench Case Management y Fusion SOAR]]
 - [[Preguntas tipo escenario - CCSA CrowdStrike]]
+- [[Lecciones del simulacro CCSA - CrowdStrike]]
+- [[Como leer correlation rules complejas - CCSA CrowdStrike]]
 - [[Neighbor en SIEM - CrowdStrike LogScale]]
 - [[correlate() en SIEM - CrowdStrike LogScale]]
 - [[groupBy() en SIEM - CrowdStrike LogScale]]
@@ -37,11 +40,14 @@ tags:
 - [[CCSA - Reporting and Communication]] convierte la investigacion en accion y comunicacion clara.
 - [[Chuleta CQL para CCSA - CrowdStrike LogScale]] concentra funciones y decisiones practicas de CQL.
 - [[defineTable() y match() en SIEM - CrowdStrike LogScale]] explica pivots con tablas temporales y joins practicos.
+- [[join() en SIEM - CrowdStrike LogScale]] explica como unir dos busquedas por una llave comun y cuando usar `inner` o `left`.
 - [[CPS - CrowdStrike Parsing Standard para CCSA]] explica normalizacion de campos entre fuentes.
 - [[MITRE ATT&CK para CCSA]] resume tacticas, tecnicas y como usarlas en alertas.
 - [[Tipos de deteccion y metadata de alertas - CCSA]] separa first-party, third-party passthrough y correlation rule detections.
 - [[Falcon Next-Gen SIEM - Workbench Case Management y Fusion SOAR]] conecta investigacion, documentacion y automatizacion.
 - [[Preguntas tipo escenario - CCSA CrowdStrike]] sirve para practicar como podria venir el examen.
+- [[Lecciones del simulacro CCSA - CrowdStrike]] resume los patrones y trampas del simulacro de 25 preguntas.
+- [[Como leer correlation rules complejas - CCSA CrowdStrike]] explica como interpretar baseline, exclusions, `NOT match()`, `groupBy()` y thresholds.
 - [[Neighbor en SIEM - CrowdStrike LogScale]] sirve para mirar el evento anterior o siguiente dentro de una secuencia.
 - [[correlate() en SIEM - CrowdStrike LogScale]] sirve para encontrar patrones multi-evento con links, `within` y `sequence`.
 - [[groupBy() en SIEM - CrowdStrike LogScale]] sirve para agrupar y resumir datos con agregaciones.
@@ -49,13 +55,14 @@ tags:
 - Idea rapida: `correlate()` = historia completa entre varios eventos.
 - Idea rapida: `groupBy()` = resumen y conteo.
 - Idea rapida: `defineTable()` + `match()` = lista temporal y pivot.
+- Idea rapida: `join()` = combinar dos busquedas por una llave comun.
 - Idea rapida: CPS = campos normalizados.
 - Idea rapida: MITRE = contexto de ataque.
 - Idea rapida: Fusion SOAR = automatizacion de respuesta.
+- Idea rapida: correlation rule compleja = baseline -> filtros -> exclusions -> anti-match -> groupBy -> threshold.
 
 ## Temas que podemos profundizar despues
 
-- mas ejemplos de `join()`
 - mas ejemplos de `regex()`
 - mas ejemplos de `parseJson()`
 - mas ejemplos de `lookup`
@@ -81,3 +88,5 @@ Cuando agreguemos una nota nueva, la conectamos siempre con:
 5. [[MITRE ATT&CK para CCSA]]
 6. [[Falcon Next-Gen SIEM - Workbench Case Management y Fusion SOAR]]
 7. [[Preguntas tipo escenario - CCSA CrowdStrike]]
+8. [[Lecciones del simulacro CCSA - CrowdStrike]]
+9. [[Como leer correlation rules complejas - CCSA CrowdStrike]]

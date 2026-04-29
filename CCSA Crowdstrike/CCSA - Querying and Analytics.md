@@ -78,6 +78,7 @@ No hace falta memorizar cada funcion de LogScale, pero si debes reconocer que us
 | buscar patrones en texto | regex |
 | enriquecer con listas o tablas | `lookup` |
 | pivotear con una lista temporal | `defineTable()` + `match()` |
+| unir dos busquedas por llave comun | `join()` |
 
 > [!tip] Regla mental
 > Si la pregunta dice "muchos eventos, necesito resumir", piensa en agregacion. Si dice "varios pasos relacionados", piensa en correlacion. Si dice "antes o despues", piensa en secuencia.
@@ -110,6 +111,7 @@ La respuesta no siempre sera una query exacta. A veces quieren que elijas el **e
 
 - Para chuleta practica de CQL: [[Chuleta CQL para CCSA - CrowdStrike LogScale]]
 - Para pivots con tablas temporales: [[defineTable() y match() en SIEM - CrowdStrike LogScale]]
+- Para unir dos busquedas por una llave comun: [[join() en SIEM - CrowdStrike LogScale]]
 - Para normalizacion de campos: [[CPS - CrowdStrike Parsing Standard para CCSA]]
 - Para contexto inmediato entre eventos: [[Neighbor en SIEM - CrowdStrike LogScale]]
 - Para unir varios eventos relacionados: [[correlate() en SIEM - CrowdStrike LogScale]]
@@ -146,6 +148,7 @@ La respuesta no siempre sera una query exacta. A veces quieren que elijas el **e
 
 - [[Chuleta CQL para CCSA - CrowdStrike LogScale]]
 - [[defineTable() y match() en SIEM - CrowdStrike LogScale]]
+- [[join() en SIEM - CrowdStrike LogScale]]
 - [[CPS - CrowdStrike Parsing Standard para CCSA]]
 - [[Neighbor en SIEM - CrowdStrike LogScale]]
 - [[correlate() en SIEM - CrowdStrike LogScale]]

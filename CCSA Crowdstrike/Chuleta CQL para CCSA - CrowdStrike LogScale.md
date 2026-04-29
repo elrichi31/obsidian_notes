@@ -158,6 +158,15 @@ Ejemplo mental:
 - conexiones de red unidas con lista de activos criticos
 - alertas unidas con informacion de owner o unidad de negocio
 
+Idea rapida:
+
+```logscale
+busqueda_principal
+| join({subquery}, field=campo_principal, key=campo_subquery, include=[campos_a_traer], mode=inner)
+```
+
+Para detalle completo: [[join() en SIEM - CrowdStrike LogScale]]
+
 ## session
 
 Piensa en `session` cuando quieras agrupar actividad relacionada dentro de una ventana temporal, por ejemplo:
@@ -213,6 +222,7 @@ Sirve para:
 
 - [[CCSA - Querying and Analytics]]
 - [[defineTable() y match() en SIEM - CrowdStrike LogScale]]
+- [[join() en SIEM - CrowdStrike LogScale]]
 - [[groupBy() en SIEM - CrowdStrike LogScale]]
 - [[Neighbor en SIEM - CrowdStrike LogScale]]
 - [[correlate() en SIEM - CrowdStrike LogScale]]
